@@ -1,7 +1,7 @@
 <template>
   <div class="list">
     <div class="stopwatches">
-      <StopWatch v-for="(stopwatch, index) in stopwatches" :key="index"/>
+      <StopWatch v-for="(stopwatch, index) in stopik" :key="index"/>
       <button @click="addStopwatch" class="addWatch">
         <img src="../../public/icons/addition.png" alt="addition">
       </button>
@@ -11,19 +11,18 @@
 
 <script>
 import StopWatch from './StopWatch.vue';
-
+import {mapState , mapMutations} from 'vuex'
 export default {
   components: {
     StopWatch,
   },
-  data() {
-    return {
-      stopwatches: [{}, {}]
-    }
-  },
+  computed: mapState({
+    stopik:'stopik'
+  }),
   methods: {
+    ...mapMutations(["addTimer"]),
     addStopwatch: function () {
-      this.stopwatches.push({})
+      this.addTimer({})
     }
   },
 };
